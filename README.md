@@ -1,5 +1,7 @@
 # BlueBuild Base Images Repo
 
+[![bluebuild](https://github.com/eoladil/bluebuild-base/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/eoladil/bluebuild-base/actions/workflows/build.yml)
+
 This repo consists of base images maintained by the BlueBuild org and built with the BlueBuild CLI. These images come with batteries included and were modeled after the [Ublue Main Images](https://github.com/ublue-os/main) before they were reduced in scope. Thanks to [Ublue](https://universal-blue.org/) for giving us a good starting point!
 
 ## Images
