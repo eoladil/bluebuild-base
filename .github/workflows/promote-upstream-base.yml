@@ -1,0 +1,69 @@
+name: promote-upstream-base
+on:
+  push:
+    branches:
+      - upstream-base
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  open-or-update-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open or update PR from upstream-base to main
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const head = `${owner}:upstream-base`;
+            const base = "main";
+            const title = "chore: promote upstream-base into main";
+            const body = [
+              "Automated promotion PR from `upstream-base` to `main`.",
+              "",
+              "- `upstream-base` is synced directly from `blue-build/base-images:main`.",
+              "- Review this PR and merge into `main` when ready."
+            ].join("\n");
+
+            const { data: pulls } = await github.rest.pulls.list({
+              owner,
+              repo,
+              state: "open",
+              base,
+              head
+            });
+
+            if (pulls.length > 0) {
+              const pull_number = pulls[0].number;
+              await github.rest.pulls.update({
+                owner,
+                repo,
+                pull_number,
+                title,
+                body
+              });
+              core.info(`Updated existing PR #${pull_number}`);
+              return;
+            }
+
+            try {
+              const { data: created } = await github.rest.pulls.create({
+                owner,
+                repo,
+                head: "upstream-base",
+                base,
+                title,
+                body,
+                draft: false
+              });
+              core.info(`Created PR #${created.number}`);
+            } catch (error) {
+              if (error.status === 422) {
+                core.info("No PR created (likely no commits between upstream-base and main).");
+                return;
+              }
+              throw error;
+            }

@@ -62,6 +62,19 @@ These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](ht
 cosign verify --key cosign.pub ghcr.io/blue-build/base-images/fedora-base:latest
 ```
 
+## Upstream sync workflow
+
+This repository uses three branch roles:
+
+- `upstream-base`: automated mirror branch synced from `blue-build/base-images:main`
+- `main`: curated branch that receives reviewed promotion PRs from `upstream-base`
+- `dev/*`: optional contributor branches for repo-specific changes
+
+Two workflows support this process:
+
+- `.github/workflows/sync-upstream-base.yml` updates `upstream-base` on a schedule or manual run
+- `.github/workflows/promote-upstream-base.yml` opens/updates a PR from `upstream-base` to `main`
+
 ## Migration from Ublue Base images
 
 We sign the kernel and kernel modules with our own key, so moving directly to a `bluebuild` base image will require trusting our key on your machine. You can easily curl our public key and use `mokutil` to trust it by doing the following:

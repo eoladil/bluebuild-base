@@ -1,0 +1,39 @@
+name: sync-upstream-base
+on:
+  schedule:
+    - cron: "30 05 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Sync upstream/main to upstream-base
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git remote add upstream https://github.com/blue-build/base-images.git 2>/dev/null || \
+            git remote set-url upstream https://github.com/blue-build/base-images.git
+
+          git fetch --no-tags upstream main
+
+          upstream_sha="$(git rev-parse upstream/main)"
+          origin_sha="$(git ls-remote --heads origin upstream-base | awk '{print $1}')"
+
+          if [ -n "${origin_sha}" ] && [ "${origin_sha}" = "${upstream_sha}" ]; then
+            echo "upstream-base is already up to date (${upstream_sha})"
+            exit 0
+          fi
+
+          git branch -f upstream-base upstream/main
+          git push origin refs/heads/upstream-base --force
