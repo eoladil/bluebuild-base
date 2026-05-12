@@ -1,0 +1,8 @@
+# Protect the public signing key
+cosign.pub merge=ours
+
+# Protect the MOK public key
+files/base/etc/pki/akmods/certs/akmods-blue-build.der merge=ours
+
+# Protect the build configuration
+.github/workflows/build.yml merge=ours

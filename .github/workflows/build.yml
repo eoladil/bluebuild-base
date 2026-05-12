@@ -29,32 +29,32 @@ jobs:
       matrix:
         recipe:
           # Fedora Latest
-          - fedora-base-latest.yml
-          - fedora-base-nvidia-latest.yml
-          - fedora-base-nvidia-open-latest.yml
-          - fedora-cosmic-latest.yml
-          - fedora-cosmic-nvidia-latest.yml
-          - fedora-cosmic-nvidia-open-latest.yml
+          # - fedora-base-latest.yml
+          # - fedora-base-nvidia-latest.yml
+          # - fedora-base-nvidia-open-latest.yml
+          # - fedora-cosmic-latest.yml
+          # - fedora-cosmic-nvidia-latest.yml
+          # - fedora-cosmic-nvidia-open-latest.yml
           - fedora-silverblue-latest.yml
           - fedora-silverblue-nvidia-latest.yml
-          - fedora-silverblue-nvidia-open-latest.yml
-          - fedora-kinoite-latest.yml
-          - fedora-kinoite-nvidia-latest.yml
-          - fedora-kinoite-nvidia-open-latest.yml
+          # - fedora-silverblue-nvidia-open-latest.yml
+          # - fedora-kinoite-latest.yml
+          # - fedora-kinoite-nvidia-latest.yml
+          # - fedora-kinoite-nvidia-open-latest.yml
 
           # Fedora GTS
-          - fedora-base-gts.yml
-          - fedora-base-nvidia-gts.yml
-          - fedora-base-nvidia-open-gts.yml
-          - fedora-cosmic-gts.yml
-          - fedora-cosmic-nvidia-gts.yml
-          - fedora-cosmic-nvidia-open-gts.yml
-          - fedora-silverblue-gts.yml
-          - fedora-silverblue-nvidia-gts.yml
-          - fedora-silverblue-nvidia-open-gts.yml
-          - fedora-kinoite-gts.yml
-          - fedora-kinoite-nvidia-gts.yml
-          - fedora-kinoite-nvidia-open-gts.yml
+          # - fedora-base-gts.yml
+          # - fedora-base-nvidia-gts.yml
+          # - fedora-base-nvidia-open-gts.yml
+          # - fedora-cosmic-gts.yml
+          # - fedora-cosmic-nvidia-gts.yml
+          # - fedora-cosmic-nvidia-open-gts.yml
+          # - fedora-silverblue-gts.yml
+          # - fedora-silverblue-nvidia-gts.yml
+          # - fedora-silverblue-nvidia-open-gts.yml
+          # - fedora-kinoite-gts.yml
+          # - fedora-kinoite-nvidia-gts.yml
+          # - fedora-kinoite-nvidia-open-gts.yml
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
