@@ -28,6 +28,10 @@ jobs:
       fail-fast: false # stop GH from cancelling all matrix builds if one fails
       matrix:
         recipe:
+          # Custom builds
+          - custom-silverblue-latest.yml
+          - custom-silverblue-nvidia-latest.yml
+
           # Fedora Latest
           # - fedora-base-latest.yml
           # - fedora-base-nvidia-latest.yml
@@ -35,8 +39,8 @@ jobs:
           # - fedora-cosmic-latest.yml
           # - fedora-cosmic-nvidia-latest.yml
           # - fedora-cosmic-nvidia-open-latest.yml
-          - fedora-silverblue-latest.yml
-          - fedora-silverblue-nvidia-latest.yml
+          #- fedora-silverblue-latest.yml
+          #- fedora-silverblue-nvidia-latest.yml
           # - fedora-silverblue-nvidia-open-latest.yml
           # - fedora-kinoite-latest.yml
           # - fedora-kinoite-nvidia-latest.yml
