@@ -8,8 +8,8 @@ These images come with batteries included and were modeled after the [Ublue Main
 
 | Recipe | Image | Versions |
 |---|---|---|
-| recipe/fedora-silverblue-latest.yml | ghcr.io/eoladil/bluebuild-base/fedora-silverblue | 44 (latest) |
-| recipe/fedora-silverblue-nvidia-latest.yml | ghcr.io/eoladil/bluebuild-base/fedora-silverblue-nvidia | 44 (latest) |
+| recipe/fedora-silverblue-latest.yml | ghcr.io/eoladil/base-images/fedora-silverblue | 44 (latest) |
+| recipe/fedora-silverblue-nvidia-latest.yml | ghcr.io/eoladil/base-images/fedora-silverblue-nvidia | 44 (latest) |
 
 ## Installation
 
@@ -17,7 +17,7 @@ To rebase an existing atomic Fedora installation to the latest build (using the 
 
 - First, rebase to the unsigned image to get the proper signing keys and policies installed:
   ```bash
-  bootc switch ghcr.io/eoladil/bluebuild-base/fedora-silverblue-nvidia:latest
+  bootc switch ghcr.io/eoladil/base-images/fedora-silverblue-nvidia:latest
   ```
 - Reboot to complete the rebase:
   ```bash
@@ -25,7 +25,7 @@ To rebase an existing atomic Fedora installation to the latest build (using the 
   ```
 - Then, rebase to the signed image, like so:
   ```bash
-  bootc switch --enforce-container-sigpolicy ghcr.io/eoladil/bluebuild-base/fedora-silverblue-nvidia:latest
+  bootc switch --enforce-container-sigpolicy ghcr.io/eoladil/base-images/fedora-silverblue-nvidia:latest
   ```
 - Reboot again to complete the installation:
   ```bash
@@ -37,7 +37,7 @@ To rebase an existing atomic Fedora installation to the latest build (using the 
 These images are signed with [Sigstore](https://www.sigstore.dev/)'s [cosign](https://github.com/sigstore/cosign). You can verify the signature by downloading the `cosign.pub` file from this repo and running the following command:
 
 ```bash
-cosign verify --key cosign.pub ghcr.io/eoladil/bluebuild-base/fedora-silverblue-nvidia:latest
+cosign verify --key cosign.pub ghcr.io/eoladil/base-images/fedora-silverblue-nvidia:latest
 ```
 
 ## Secure Boot & MOK Keys
